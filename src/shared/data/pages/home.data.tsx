@@ -58,10 +58,8 @@ export const heroHome: HeroProps = {
     </>
   ),
   callToAction: {
-    text: 'Get template',
-    href: 'https://github.com/onwidget/tailnext',
-    icon: IconDownload,
-    targetBlank: true,
+    text: 'Login',
+    href: '/login',
   },
   callToAction2: {
     text: 'Learn more',

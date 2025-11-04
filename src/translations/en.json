@@ -6,5 +6,18 @@
       "subtitle2": "You can choose the plan that best suits your goals!",
       "tagline": "Demo Pricing Page"
     }
+  },
+  "login": {
+    "title": "Login",
+    "emailLabel": "Email",
+    "emailPlaceholder": "Enter your email",
+    "passwordLabel": "Password",
+    "passwordPlaceholder": "Enter your password",
+    "loginButton": "Login",
+    "noAccount": "Don't have an account?",
+    "signUp": "Sign Up"
+  },
+  "header": {
+    "loginButton": "Login"
   }
 }

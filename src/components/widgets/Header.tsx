@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useState } from 'react';
+import { useRef, useState, useContext } from 'react';
 import { IconRss } from '@tabler/icons-react';
 import { useOnClickOutside } from '~/hooks/useOnClickOutside';
 import ToggleDarkMode from '~/components/atoms/ToggleDarkMode';
@@ -11,9 +11,19 @@ import ToggleMenu from '../atoms/ToggleMenu';
 import { headerData } from '~/shared/data/global.data';
 import CTA from '../common/CTA';
 import { CallToActionType } from '~/shared/types';
+import { LanguageContext } from '~/context/LanguageContext';
+import { getTranslation } from '~/utils/i18n';
 
 const Header = () => {
   const { links, actions, isSticky, showToggleTheme, showRssFeed, position } = headerData;
+  const { language } = useContext(LanguageContext);
+
+  const translatedActions = actions.map(action => {
+    if (action.href === '/login') {
+      return { ...action, text: getTranslation(language, 'header.loginButton') };
+    }
+    return action;
+  });
 
   const ref = useRef(null);
 
@@ -162,9 +172,9 @@ const Header = () => {
                 <IconRss className="h-5 w-5" />
               </Link>
             )}
-            {actions && actions.length > 0 && (
+            {translatedActions && translatedActions.length > 0 && (
               <div className="ml-4 rtl:ml-0 rtl:mr-4 flex w-max flex-wrap justify-end">
-                {actions.map((callToAction, index) => (
+                {translatedActions.map((callToAction, index) => (
                   <CTA
                     key={`item-action-${index}`}
                     callToAction={callToAction as CallToActionType}

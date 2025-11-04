@@ -22,8 +22,8 @@ const Page = () => {
         </span>{' '}
         {getTranslation(language, 'pricing.hero.subtitle2')}
       </>
-    ),
-    tagline: getTranslation(language, 'pricing.hero.tagline'),
+    )
+    // tagline: getTranslation(language, 'pricing.hero.tagline'),
   };
 
   return (

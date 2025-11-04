@@ -69,9 +69,8 @@ export const headerData: HeaderProps = {
   ],
   actions: [
     {
-      text: 'Download',
-      href: 'https://github.com/onwidget/tailnext',
-      targetBlank: true,
+      text: 'Login',
+      href: '/login',
     },
   ],
   isSticky: true,

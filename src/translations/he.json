@@ -6,5 +6,18 @@
       "subtitle2": "אתה יכול לבחור את התוכנית המתאימה ביותר למטרות שלך!",
       "tagline": "דף הדגמה למחירון"
     }
+  },
+  "login": {
+    "title": "התחברות",
+    "emailLabel": "אימייל",
+    "emailPlaceholder": "הכנס אימייל",
+    "passwordLabel": "סיסמה",
+    "passwordPlaceholder": "הכנס סיסמה",
+    "loginButton": "התחבר",
+    "noAccount": "אין לך חשבון?",
+    "signUp": "הירשם"
+  },
+  "header": {
+    "loginButton": "התחבר"
   }
 }
