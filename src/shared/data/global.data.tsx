@@ -37,33 +37,21 @@ export const headerData: HeaderProps = {
           href: '/pricing',
         },
         {
-          label: 'About us',
-          href: '/about',
-        },
-        {
-          label: 'Contact us',
-          href: '/contact',
-        },
-        {
           label: 'FAQs',
           href: '/faqs',
+        },
+        {
+          label: 'About us',
+          href: '/about',
         },
         {
           label: 'Terms & Conditions',
           href: '/terms',
         },
-        {
-          label: 'Privacy Policy',
-          href: '/privacy',
-        },
       ],
     },
     {
-      label: 'Blog',
-      href: '/blog',
-    },
-    {
-      label: 'Contact',
+      label: 'Contact Us',
       href: '/contact',
     },
   ],
@@ -76,7 +64,7 @@ export const headerData: HeaderProps = {
   isSticky: true,
   showToggleTheme: true,
   showRssFeed: false,
-  position: 'right',
+  position: 'left',
 };
 
 // Footer data
@@ -226,14 +214,14 @@ export const footerData: FooterProps = {
 // Footer2 data
 export const footerData2: FooterProps = {
   links: [
-    {
-      label: 'Terms & Conditions',
-      href: '/terms',
-    },
-    {
-      label: 'Privacy Policy',
-      href: '/privacy',
-    },
+    // {
+    //   label: 'Terms & Conditions',
+    //   href: '/terms',
+    // },
+    // {
+    //   label: 'Privacy Policy',
+    //   href: '/privacy',
+    // },
   ],
   columns: [
     {
@@ -256,20 +244,20 @@ export const footerData2: FooterProps = {
     { label: 'RSS', icon: IconRss, href: '#' },
     { label: 'Github', icon: IconBrandGithub, href: 'https://github.com/onwidget/tailnext' },
   ],
-  footNote: (
-    <div className="mr-4 rtl:mr-0 rtl:ml-4 text-sm">
-      <span className="float-left rtl:float-right mr-1.5 rtl:mr-0 rtl:ml-1.5 h-5 w-5 rounded-sm bg-[url(https://onwidget.com/favicon/favicon-32x32.png)] bg-cover md:-mt-0.5 md:h-6 md:w-6"></span>
-      <span>
-        Made by{' '}
-        <a
-          className="font-semibold text-slate-900 dark:text-gray-200 hover:text-blue-600 hover:underline dark:hover:text-blue-600"
-          href="https://onwidget.com/"
-        >
-          {' '}
-          onWidget
-        </a>{' '}
-        · All rights reserved.
-      </span>
-    </div>
-  ),
+  // footNote: (
+  //   <div className="mr-4 rtl:mr-0 rtl:ml-4 text-sm">
+  //     <span className="float-left rtl:float-right mr-1.5 rtl:mr-0 rtl:ml-1.5 h-5 w-5 rounded-sm bg-[url(https://onwidget.com/favicon/favicon-32x32.png)] bg-cover md:-mt-0.5 md:h-6 md:w-6"></span>
+  //     <span>
+  //       Made by{' '}
+  //       <a
+  //         className="font-semibold text-slate-900 dark:text-gray-200 hover:text-blue-600 hover:underline dark:hover:text-blue-600"
+  //         href="https://onwidget.com/"
+  //       >
+  //         {' '}
+  //         onWidget
+  //       </a>{' '}
+  //       · All rights reserved.
+  //     </span>
+  //   </div>
+  // ),
 };

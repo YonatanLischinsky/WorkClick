@@ -18,6 +18,9 @@
     "signUp": "הירשם"
   },
   "header": {
-    "loginButton": "התחבר"
+    "loginButton": "בואו נתחיל"
+  },
+  "hero": {
+    "registerNow": "הירשם עכשיו"
   }
 }

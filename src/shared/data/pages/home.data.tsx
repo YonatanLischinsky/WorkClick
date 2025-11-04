@@ -58,17 +58,17 @@ export const heroHome: HeroProps = {
     </>
   ),
   callToAction: {
-    text: 'Login',
-    href: '/login',
+    text: 'Register now',
+    href: '/signup',
   },
-  callToAction2: {
-    text: 'Learn more',
-    href: '/',
-  },
-  image: {
-    src: heroImg,
-    alt: 'Hero TailNext',
-  },
+  // callToAction2: {
+  //   text: 'Learn mor2e',
+  //   href: '/',
+  // },
+  // image: {
+  //   src: heroImg,
+  //   alt: 'Hero TailNext',
+  // },
 };
 
 // SocialProof data on Home page *******************

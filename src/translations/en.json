@@ -10,14 +10,17 @@
   "login": {
     "title": "Login",
     "emailLabel": "Email",
-    "emailPlaceholder": "Enter your email",
+    "emailPlaceholder": "Enter Email",
     "passwordLabel": "Password",
-    "passwordPlaceholder": "Enter your password",
+    "passwordPlaceholder": "Enter password",
     "loginButton": "Login",
     "noAccount": "Don't have an account?",
     "signUp": "Sign Up"
   },
   "header": {
-    "loginButton": "Login"
+    "loginButton": "Getting Started"
+  },
+  "hero": {
+    "registerNow": "Register Now"
   }
 }
