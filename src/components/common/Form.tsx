@@ -1,6 +1,7 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import { LanguageContext } from '~/context/LanguageContext';
 import { twMerge } from 'tailwind-merge';
 import { FormProps } from '../../shared/types';
 
@@ -15,6 +16,7 @@ const Form = ({
   btnPosition,
   containerClass,
 }: FormProps) => {
+  const { language } = useContext(LanguageContext);
   const [inputValues, setInputValues] = useState([]);
   const [radioBtnValue, setRadioBtnValue] = useState('');
   const [textareaValues, setTextareaValues] = useState('');
@@ -72,7 +74,9 @@ const Form = ({
                   value={inputValues[index]}
                   onChange={changeInputValueHandler}
                   placeholder={placeholder}
-                  className="mb-2 w-full rounded-md border border-gray-400 py-2 pl-2 pr-4 shadow-md dark:text-gray-300 sm:mb-0"
+                  className={`mb-2 w-full rounded-md border border-gray-400 py-2 pl-2 pr-4 shadow-md dark:text-gray-300 sm:mb-0 ${
+                    language === 'he' ? 'text-right' : ''
+                  }`}
                 />
               </div>
             ))}
@@ -115,7 +119,9 @@ const Form = ({
               value={textareaValues}
               onChange={(e) => changeTextareaHandler(e)}
               placeholder={textarea.placeholder}
-              className="mb-2 w-full rounded-md border border-gray-400 py-2 pl-2 pr-4 shadow-md dark:text-gray-300 sm:mb-0"
+              className={`mb-2 w-full rounded-md border border-gray-400 py-2 pl-2 pr-4 shadow-md dark:text-gray-300 sm:mb-0 ${
+                language === 'he' ? 'text-right' : ''
+              }`}
             />
           </div>
         )}

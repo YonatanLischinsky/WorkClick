@@ -28,7 +28,9 @@ const LoginPage = () => {
             <input
               type="email"
               id="email"
-              className="w-full rounded-md border border-gray-300 px-3 py-2 focus:border-blue-500 focus:outline-none dark:border-gray-600 dark:bg-slate-700 dark:text-white"
+              className={`w-full rounded-md border border-gray-300 px-3 py-2 focus:border-blue-500 focus:outline-none dark:border-gray-600 dark:bg-slate-700 dark:text-white ${
+                language === 'he' ? 'text-right' : ''
+              }`}
               placeholder={getTranslation(language, 'login.emailPlaceholder')}
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -45,7 +47,9 @@ const LoginPage = () => {
             <input
               type="password"
               id="password"
-              className="w-full rounded-md border border-gray-300 px-3 py-2 focus:border-blue-500 focus:outline-none dark:border-gray-600 dark:bg-slate-700 dark:text-white"
+              className={`w-full rounded-md border border-gray-300 px-3 py-2 focus:border-blue-500 focus:outline-none dark:border-gray-600 dark:bg-slate-700 dark:text-white ${
+                language === 'he' ? 'text-right' : ''
+              }`}
               placeholder={getTranslation(language, 'login.passwordPlaceholder')}
               value={password}
               onChange={(e) => setPassword(e.target.value)}
