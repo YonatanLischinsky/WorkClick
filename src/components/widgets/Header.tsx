@@ -27,6 +27,10 @@ const Header = () => {
     return action;
   });
 
+  if (language === 'he') {
+    translatedActions.reverse();
+  }
+
   const translatedLinks = links.map(link => {
     const translatedLink = { ...link, label: getTranslation(language, link.label) };
     if (link.links) {
@@ -176,10 +180,14 @@ const Header = () => {
           } fixed bottom-0 left-0 w-full justify-end p-3 md:static md:mb-0 md:flex md:w-auto md:self-center md:p-0 md:bg-transparent md:dark:bg-transparent md:border-none bg-white dark:bg-slate-900 border-t border-gray-200 dark:border-slate-600 ${language === 'he' ? 'md:order-1' : ''}`}
         >
           <div className="flex w-full items-center justify-between md:w-auto">
-            {showToggleTheme && <ToggleDarkMode />}
-            <div className="hidden md:block">
-              <ToggleLanguage />
-            </div>
+            {language === 'he' && (
+              <>
+                {showToggleTheme && <ToggleDarkMode />}
+                <div className="hidden md:block">
+                  <ToggleLanguage />
+                </div>
+              </>
+            )}
             {showRssFeed && (
               <Link
                 className="text-muted inline-flex items-center rounded-lg p-2.5 text-sm hover:bg-gray-100 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-700"
@@ -198,6 +206,14 @@ const Header = () => {
                     linkClass="btn btn-primary m-1 py-2 px-5 text-sm font-semibold shadow-none md:px-6"
                   />
                 ))}
+              </div>
+            )}
+            {language !== 'he' && (
+              <div className="flex items-center">
+                <div className="hidden md:block">
+                  <ToggleLanguage />
+                </div>
+                {showToggleTheme && <ToggleDarkMode />}
               </div>
             )}
           </div>
