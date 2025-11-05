@@ -87,92 +87,93 @@ const Header = () => {
       id="header"
     >
       <div className="mx-auto w-full max-w-7xl md:flex md:justify-between md:py-3.5 md:px-4">
-        <div
-          className={`flex justify-between py-3 px-3 md:py-0 md:px-0 ${
-            isToggleMenuOpen
-              ? 'md:bg-transparent md:dark:bg-transparent md:border-none bg-white dark:bg-slate-900 border-b border-gray-200 dark:border-slate-600'
-              : ''
-          }`}
-        >
-          <Link
-            className="flex items-center"
-            href="/"
-            onClick={() =>
-              isToggleMenuOpen ? handleToggleMenuOnClick() : setIsDropdownOpen(updatedIsDropdownOpen as boolean[])
-            }
-          >
-            <Logo />
-          </Link>
-          <div className="flex items-center gap-4 md:hidden">
-            <ToggleLanguage />
-            <ToggleMenu handleToggleMenuOnClick={handleToggleMenuOnClick} isToggleMenuOpen={isToggleMenuOpen} />
+        <div className={`md:flex md:items-center ${language === 'he' ? 'md:order-2 md:flex-row-reverse' : ''}`}>
+          <div
+            className={`flex justify-between py-3 px-3 md:py-0 md:px-0 ${
+              isToggleMenuOpen
+                ? 'md:bg-transparent md:dark:bg-transparent md:border-none bg-white dark:bg-slate-900 border-b border-gray-200 dark:border-slate-600'
+                : ''
+            }`}>
+            <Link
+              className="flex items-center"
+              href="/"
+              onClick={() =>
+                isToggleMenuOpen ? handleToggleMenuOnClick() : setIsDropdownOpen(updatedIsDropdownOpen as boolean[])
+              }
+            >
+              <Logo />
+            </Link>
+            <div className="flex items-center gap-4 md:hidden">
+              <ToggleLanguage />
+              <ToggleMenu handleToggleMenuOnClick={handleToggleMenuOnClick} isToggleMenuOpen={isToggleMenuOpen} />
+            </div>
           </div>
-        </div>
-        <nav
-          className={`${isToggleMenuOpen ? 'block px-3' : 'hidden'} h-screen md:w-full ${
-            position === 'right' ? 'justify-end' : position === 'left' ? 'justify-start' : 'justify-center'
-          } w-auto overflow-y-auto dark:text-slate-200 md:mx-5 md:flex md:h-auto md:items-center md:overflow-visible`}
-          aria-label="Main navigation"
-        >
-          <ul
-            ref={ref}
-            className="flex w-full flex-col mt-2 mb-36 md:m-0 text-xl md:w-auto md:flex-row md:self-center md:pt-0 md:text-base"
+          <nav
+            className={`${isToggleMenuOpen ? 'block px-3' : 'hidden'} h-screen md:w-full ${
+              position === 'right' ? 'justify-end' : position === 'left' ? 'justify-start' : 'justify-center'
+            } w-auto overflow-y-auto dark:text-slate-200 md:mx-5 md:flex md:h-auto md:items-center md:overflow-visible`}
+            aria-label="Main navigation"
           >
-            {translatedLinks &&
-              translatedLinks.map(({ label, href, icon: Icon, links }, index) => (
-                <li key={`item-link-${index}`} className={links?.length ? 'dropdown' : ''}>
-                  {links && links.length ? (
-                    <>
-                      <button
+            <ul
+              ref={ref}
+              className={`flex w-full flex-col mt-2 mb-36 md:m-0 text-xl md:w-auto md:flex-row md:self-center md:pt-0 md:text-base ${language === 'he' ? 'md:flex-row-reverse' : ''}`}
+            >
+              {translatedLinks &&
+                translatedLinks.map(({ label, href, icon: Icon, links }, index) => (
+                  <li key={`item-link-${index}`} className={links?.length ? 'dropdown' : ''}>
+                    {links && links.length ? (
+                      <>
+                        <button
+                          className="flex items-center px-4 py-3 font-medium transition duration-150 ease-in-out hover:text-gray-900 dark:hover:text-white"
+                          onClick={() => handleDropdownOnClick(index)}
+                        >
+                          {label}{' '}
+                          {Icon && (
+                            <Icon
+                              className={`${
+                                isDropdownOpen[index] ? 'rotate-180' : ''
+                              } ml-0.5 rtl:ml-0 rtl:mr-0.5 hidden h-3.5 w-3.5 md:inline`}
+                            />
+                          )}
+                        </button>
+                        <ul
+                          className={`${
+                            isDropdownOpen[index] ? 'block' : 'md:hidden'
+                          } rounded pl-4 font-medium drop-shadow-xl md:absolute md:min-w-[200px] md:bg-white/90 md:pl-0 md:backdrop-blur-md dark:md:bg-slate-900/90 md:border md:border-gray-200 md:dark:border-slate-700`}
+                        >
+                          {links.map(({ label: label2, href: href2 }, index2) => (
+                            <li key={`item-link-${index2}`}>
+                              <Link
+                                className="whitespace-no-wrap block py-2 px-5 first:rounded-t last:rounded-b dark:hover:bg-gray-700 md:hover:bg-gray-200"
+                                href={href2 as string}
+                                onClick={() =>
+                                  isToggleMenuOpen ? handleToggleMenuOnClick() : handleCloseDropdownOnClick(index)
+                                }
+                              >
+                                {label2}
+                              </Link>
+                            </li>
+                          ))}
+                        </ul>
+                      </>
+                    ) : (
+                      <Link
                         className="flex items-center px-4 py-3 font-medium transition duration-150 ease-in-out hover:text-gray-900 dark:hover:text-white"
-                        onClick={() => handleDropdownOnClick(index)}
+                        href={href as string}
+                        onClick={() => (isToggleMenuOpen ? handleToggleMenuOnClick() : handleDropdownOnClick(index))}
                       >
-                        {label}{' '}
-                        {Icon && (
-                          <Icon
-                            className={`${
-                              isDropdownOpen[index] ? 'rotate-180' : ''
-                            } ml-0.5 rtl:ml-0 rtl:mr-0.5 hidden h-3.5 w-3.5 md:inline`}
-                          />
-                        )}
-                      </button>
-                      <ul
-                        className={`${
-                          isDropdownOpen[index] ? 'block' : 'md:hidden'
-                        } rounded pl-4 font-medium drop-shadow-xl md:absolute md:min-w-[200px] md:bg-white/90 md:pl-0 md:backdrop-blur-md dark:md:bg-slate-900/90 md:border md:border-gray-200 md:dark:border-slate-700`}
-                      >
-                        {links.map(({ label: label2, href: href2 }, index2) => (
-                          <li key={`item-link-${index2}`}>
-                            <Link
-                              className="whitespace-no-wrap block py-2 px-5 first:rounded-t last:rounded-b dark:hover:bg-gray-700 md:hover:bg-gray-200"
-                              href={href2 as string}
-                              onClick={() =>
-                                isToggleMenuOpen ? handleToggleMenuOnClick() : handleCloseDropdownOnClick(index)
-                              }
-                            >
-                              {label2}
-                            </Link>
-                          </li>
-                        ))}
-                      </ul>
-                    </>
-                  ) : (
-                    <Link
-                      className="flex items-center px-4 py-3 font-medium transition duration-150 ease-in-out hover:text-gray-900 dark:hover:text-white"
-                      href={href as string}
-                      onClick={() => (isToggleMenuOpen ? handleToggleMenuOnClick() : handleDropdownOnClick(index))}
-                    >
-                      {label}
-                    </Link>
-                  )}
-                </li>
-              ))}
-          </ul>
-        </nav>
+                        {label}
+                      </Link>
+                    )}
+                  </li>
+                ))}
+            </ul>
+          </nav>
+        </div>
         <div
           className={`${
             isToggleMenuOpen ? 'block' : 'hidden'
-          } fixed bottom-0 left-0 w-full justify-end p-3 md:static md:mb-0 md:flex md:w-auto md:self-center md:p-0 md:bg-transparent md:dark:bg-transparent md:border-none bg-white dark:bg-slate-900 border-t border-gray-200 dark:border-slate-600`}
+          } fixed bottom-0 left-0 w-full justify-end p-3 md:static md:mb-0 md:flex md:w-auto md:self-center md:p-0 md:bg-transparent md:dark:bg-transparent md:border-none bg-white dark:bg-slate-900 border-t border-gray-200 dark:border-slate-600 ${language === 'he' ? 'md:order-1' : ''}`}
         >
           <div className="flex w-full items-center justify-between md:w-auto">
             {showToggleTheme && <ToggleDarkMode />}
@@ -189,7 +190,7 @@ const Header = () => {
               </Link>
             )}
             {translatedActions && translatedActions.length > 0 && (
-              <div className="ml-4 rtl:ml-0 rtl:mr-4 flex w-max flex-wrap justify-end">
+              <div className={`${language === 'he' ? 'mr-4' : 'ml-4'} flex w-max flex-wrap justify-end`}>
                 {translatedActions.map((callToAction, index) => (
                   <CTA
                     key={`item-action-${index}`}
