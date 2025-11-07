@@ -1,6 +1,7 @@
 'use client';
 
-import { createContext, useState, useMemo } from 'react';
+import { createContext, useState, useMemo, useEffect } from 'react';
+import { getCookie } from '~/utils/cookies';
 
 export const LanguageContext = createContext({
   language: 'en',
@@ -9,6 +10,13 @@ export const LanguageContext = createContext({
 
 export const LanguageProvider = ({ children }) => {
   const [language, setLanguage] = useState('he');
+
+  useEffect(() => {
+    const savedLanguage = getCookie('NEXT_LOCALE');
+    if (savedLanguage) {
+      setLanguage(savedLanguage);
+    }
+  }, []);
 
   const value = useMemo(() => ({
     language,

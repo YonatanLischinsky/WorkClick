@@ -1,11 +1,8 @@
-'use client';
-
-import { useEffect, useState, useContext } from 'react';
-import { useRouter } from 'next/navigation';
-import { supabase } from '~/utils/supabase';
-import { LanguageContext } from '~/context/LanguageContext';
-import { getTranslation } from '~/utils/i18n';
+import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
+import { cookies } from 'next/headers';
+import { redirect } from 'next/navigation';
 import { signOutAction } from '../../(auth)/actions';
+import { getTranslation } from '~/utils/i18n';
 
 interface Profile {
   id: string;
@@ -15,61 +12,28 @@ interface Profile {
   created_at: string;
 }
 
-export default function DashboardPage() {
-  const [profile, setProfile] = useState<Profile | null>(null);
-  const [loading, setLoading] = useState(true);
-  const router = useRouter();
-  const { language } = useContext(LanguageContext);
+export default async function DashboardPage() {
+  const cookieStore = cookies();
+  const language = cookieStore.get('NEXT_LOCALE')?.value || 'en';
 
-  useEffect(() => {
-    const fetchProfile = async () => {
-      const { data: { session } } = await supabase.auth.getSession();
+  const supabase = createServerComponentClient({ cookies });
 
-      if (!session) {
-        router.push('/login');
-        return;
-      }
+  const {
+    data: { session },
+  } = await supabase.auth.getSession();
 
-      const { data: prof, error } = await supabase
-        .from('profiles')
-        .select('*')
-        .eq('id', session.user.id)
-        .single();
+  if (!session) {
+    redirect('/login');
+  }
 
-      if (error) {
-        console.error('Error loading profile:', error);
-      } else {
-        setProfile(prof as Profile);
-      }
-      setLoading(false);
-    };
+  const { data: profile, error } = await supabase
+    .from('profiles')
+    .select('*')
+    .eq('id', session.user.id)
+    .single();
 
-    fetchProfile();
-
-    const { data: authListener } = supabase.auth.onAuthStateChange((event, session) => {
-      if (event === 'SIGNED_OUT') {
-        router.push('/login');
-      }
-      if (event === 'SIGNED_IN') {
-        setLoading(true);
-        fetchProfile();
-      }
-    });
-
-    return () => {
-      authListener?.subscription.unsubscribe();
-    };
-  }, [router]);
-
-  if (loading) {
-    return (
-      <div
-        className="flex min-h-screen items-center justify-center bg-gray-100 dark:bg-slate-900"
-        dir={language === 'he' ? 'rtl' : 'ltr'}
-      >
-        <div className="text-xl">{getTranslation(language, 'dashboard.loading')}</div>
-      </div>
-    );
+  if (error) {
+    console.error('Error loading profile:', error);
   }
 
   if (!profile) {

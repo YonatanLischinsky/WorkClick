@@ -2,12 +2,15 @@
 
 import { useContext } from 'react';
 import { LanguageContext } from '~/context/LanguageContext';
+import { setCookie } from '~/utils/cookies';
 
 const ToggleLanguage = () => {
   const { language, setLanguage } = useContext(LanguageContext);
 
   const handleLanguageChange = () => {
-    setLanguage(language === 'en' ? 'he' : 'en');
+    const newLanguage = language === 'en' ? 'he' : 'en';
+    setLanguage(newLanguage);
+    setCookie('NEXT_LOCALE', newLanguage, 365);
   };
 
   return (
