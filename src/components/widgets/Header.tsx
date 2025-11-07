@@ -13,8 +13,14 @@ import CTA from '../common/CTA';
 import { CallToActionType } from '~/shared/types';
 import { LanguageContext } from '~/context/LanguageContext';
 import { getTranslation } from '~/utils/i18n';
+import { Session } from '@supabase/supabase-js';
 
-const Header = () => {
+interface HeaderProps {
+  session: Session | null;
+  profile: { full_name: string } | null;
+}
+
+const Header = ({ session, profile }: HeaderProps) => {
   const { links, actions, isSticky, showToggleTheme, showRssFeed, position } = headerData;
   const { language } = useContext(LanguageContext);
 
@@ -197,16 +203,29 @@ const Header = () => {
                 <IconRss className="h-5 w-5" />
               </Link>
             )}
-            {translatedActions && translatedActions.length > 0 && (
-              <div className={`${language === 'he' ? 'mr-4' : 'ml-4'} flex w-max flex-wrap justify-end`}>
-                {translatedActions.map((callToAction, index) => (
-                  <CTA
-                    key={`item-action-${index}`}
-                    callToAction={callToAction as CallToActionType}
-                    linkClass="btn btn-primary m-1 py-2 px-5 text-sm font-semibold shadow-none md:px-6"
-                  />
-                ))}
+            {session ? (
+              <div className={`${language === 'he' ? 'mr-4' : 'ml-4'} flex w-max flex-wrap items-center justify-end`}>
+                <span className="mr-4 text-gray-700 dark:text-gray-300">Welcome, {profile?.full_name}</span>
+                <Link
+                  href="/dashboard"
+                  className="btn btn-primary m-1 py-2 px-5 text-sm font-semibold shadow-none md:px-6"
+                >
+                  Dashboard
+                </Link>
               </div>
+            ) : (
+              translatedActions &&
+              translatedActions.length > 0 && (
+                <div className={`${language === 'he' ? 'mr-4' : 'ml-4'} flex w-max flex-wrap justify-end`}>
+                  {translatedActions.map((callToAction, index) => (
+                    <CTA
+                      key={`item-action-${index}`}
+                      callToAction={callToAction as CallToActionType}
+                      linkClass="btn btn-primary m-1 py-2 px-5 text-sm font-semibold shadow-none md:px-6"
+                    />
+                  ))}
+                </div>
+              )
             )}
             {language !== 'he' && (
               <div className="flex items-center">

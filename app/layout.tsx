@@ -1,3 +1,5 @@
+import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
+import { cookies } from 'next/headers';
 import { Metadata } from 'next';
 
 import { SITE } from '~/config.js';
@@ -23,7 +25,18 @@ export const metadata: Metadata = {
   description: SITE.description,
 };
 
-export default function RootLayout({ children }: LayoutProps) {
+export default async function RootLayout({ children }: LayoutProps) {
+  const supabase = createServerComponentClient({ cookies });
+  const {
+    data: { session },
+  } = await supabase.auth.getSession();
+
+  let profile = null;
+  if (session) {
+    const { data } = await supabase.from('profiles').select('full_name').eq('id', session.user.id).single();
+    profile = data;
+  }
+
   return (
     <HtmlWithLanguage>
       <head>
@@ -34,7 +47,7 @@ export default function RootLayout({ children }: LayoutProps) {
         <LanguageProvider>
           <Providers>
             <Announcement />
-            <Header />
+            <Header session={session} profile={profile} />
             <main>{children}</main>
             <Footer2 />
           </Providers>
