@@ -16,7 +16,6 @@
     "loginButton": "Login",
     "noAccount": "Don't have an account?",
     "signUp": "Sign Up",
-    "rememberMe": "Remember me?",
     "errorAllFields": "Please fill in all fields",
     "errorInvalidCredentials": "Invalid email or password",
     "errorEmailNotConfirmed": "Please confirm your email address",

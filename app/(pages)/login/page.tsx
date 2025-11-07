@@ -31,7 +31,6 @@ const LoginPage = () => {
   const { language } = useContext(LanguageContext);
 
   const [showPassword, setShowPassword] = useState(false);
-  const [rememberMe, setRememberMe] = useState(true);
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -113,26 +112,7 @@ const LoginPage = () => {
             </div>
           </div>
 
-          <div className="mb-6 flex items-center justify-center">
-            <div className={`flex items-center ${language === 'he' ? 'flex-row-reverse' : ''}`}>
-              <input
-                id="remember-me"
-                name="remember-me"
-                type="checkbox"
-                className="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
-                checked={rememberMe}
-                onChange={(e) => setRememberMe(e.target.checked)}
-              />
-              <label
-                htmlFor="remember-me"
-                className={`block text-sm text-gray-900 dark:text-gray-300 ${
-                  language === 'he' ? 'mr-2' : 'ml-2'
-                }`}
-              >
-                {getTranslation(language, 'login.rememberMe')}
-              </label>
-            </div>
-          </div>
+          
 
           {errorKey && (
             <div className="mb-4 rounded-md bg-red-50 p-4 dark:bg-red-900/50">
