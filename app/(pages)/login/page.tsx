@@ -36,17 +36,10 @@ const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  // server action state (React 18/Next 14 → useFormState)
   const [state, formAction] = useFormState(loginAction as any, { errorKey: '' });
+  const [submitted, setSubmitted] = useState(false);
 
-  // simple client-side empty-field hint
-  const [localErrorKey, setLocalErrorKey] = useState('');
-  useEffect(() => {
-    if (!email || !password) setLocalErrorKey('login.errorAllFields');
-    else setLocalErrorKey('');
-  }, [email, password]);
-
-  const errorKey = state?.errorKey || localErrorKey;
+  const errorKey = state?.errorKey || (submitted && (!email || !password) ? 'login.errorAllFields' : '');
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-gray-100 dark:bg-slate-900">
@@ -55,8 +48,12 @@ const LoginPage = () => {
           {getTranslation(language, 'login.title')}
         </h2>
 
-        {/* Use the server action directly */}
-        <form action={formAction}>
+        <form
+          action={(formData) => {
+            setSubmitted(true);
+            formAction(formData);
+          }}
+        >
           <div className="mb-4">
             <label
               htmlFor="email"
