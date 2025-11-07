@@ -16,7 +16,11 @@
     "loginButton": "התחבר",
     "noAccount": "אין לך חשבון?",
     "signUp": "הירשם",
-    "rememberMe": "?זכור אותי"
+    "rememberMe": "?זכור אותי",
+    "errorAllFields": "אנא מלא את כל השדות",
+    "errorInvalidCredentials": "אימייל או סיסמה לא נכונים",
+    "errorEmailNotConfirmed": "אנא אשר את כתובת האימייל שלך",
+    "errorGeneral": "אירעה שגיאה בעת ההתחברות"
   },
   "signup": {
     "title": "רישום",
@@ -39,7 +43,11 @@
     "errorAccountType": "אנא בחר סוג חשבון",
     "errorAllFields": "אנא מלא את כל השדות",
     "errorInvalidEmail": "אנא הכנס כתובת אימייל תקינה",
-    "errorPasswordLength": "הסיסמה חייבת להכיל לפחות 6 תווים"
+    "errorPasswordLength": "הסיסמה חייבת להכיל לפחות 6 תווים",
+    "errorEmailExists": "כתובת האימייל הזו כבר רשומה",
+    "errorPasswordWeak": "הסיסמה חלשה מדי. יש להשתמש לפחות ב-6 תווים עם מספרים ואותיות",
+    "errorGeneral": "אירעה שגיאה בעת ההרשמה",
+    "confirmEmail": "אנא בדוק את האימייל שלך לאישור החשבון"
   },
   "header": {
     "home": "עמוד ראשי",
