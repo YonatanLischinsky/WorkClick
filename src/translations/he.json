@@ -62,7 +62,8 @@
     "loginButton": "כניסה למערכת",
     "signUp": "רישום",
     "welcome": ",ברוך הבא",
-    "dashboardButton": "החשבון שלי"
+    "dashboardButton": "החשבון שלי",
+    "platformButton": "פלטפורמה"
   },
   "dashboard": {
     "title": "החשבון שלי",

@@ -49,7 +49,7 @@ export default async function RootLayout({ children }: LayoutProps) {
             <Announcement />
             <Header user={user} profile={profile} />
             <main>{children}</main>
-            <Footer2 />
+            {/* <Footer2 /> */}
           </Providers>
         </LanguageProvider>
       </body>

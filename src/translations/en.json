@@ -62,7 +62,8 @@
     "loginButton": "Login",
     "signUp": "Sign Up",
     "welcome": "Welcome,",
-    "dashboardButton": "My Account"
+    "dashboardButton": "My Account",
+    "platformButton": "Platform"
   },
   "dashboard": {
     "title": "My Account",
