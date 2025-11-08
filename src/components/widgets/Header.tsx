@@ -13,14 +13,14 @@ import CTA from '../common/CTA';
 import { CallToActionType } from '~/shared/types';
 import { LanguageContext } from '~/context/LanguageContext';
 import { getTranslation } from '~/utils/i18n';
-import { Session } from '@supabase/supabase-js';
+import { Session, User } from '@supabase/supabase-js';
 
 interface HeaderProps {
-  session: Session | null;
+  user: User | null;
   profile: { full_name: string } | null;
 }
 
-const Header = ({ session, profile }: HeaderProps) => {
+const Header = ({ user, profile }: HeaderProps) => {
   const { links, actions, isSticky, showToggleTheme, showRssFeed, position } = headerData;
   const { language } = useContext(LanguageContext);
 
@@ -203,7 +203,7 @@ const Header = ({ session, profile }: HeaderProps) => {
                 <IconRss className="h-5 w-5" />
               </Link>
             )}
-            {session ? (
+            {user ? (
               <div
                 className={`${language === 'he' ? 'mr-4' : 'ml-4'} flex w-max flex-wrap items-center justify-end ${
                   language === 'he' ? 'flex-row-reverse' : ''

@@ -6,13 +6,15 @@ import type { NextRequest } from 'next/server'
 export async function middleware(req: NextRequest) {
   const res = NextResponse.next()
   const supabase = createMiddlewareClient({ req, res })
-  const { data: { session } } = await supabase.auth.getSession()
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
 
-  if (req.nextUrl.pathname === '/auth/signout') return NextResponse.next()
+  if (req.nextUrl.pathname === '/auth/signout') return NextResponse.next();
 
-  // If there is a session and the user tries to access login/signup, send to dashboard
-  if (session && (req.nextUrl.pathname === '/login' || req.nextUrl.pathname === '/signup')) {
-    return NextResponse.redirect(new URL('/dashboard', req.url))
+  // If there is a user and they try to access login/signup, send to dashboard
+  if (user && (req.nextUrl.pathname === '/login' || req.nextUrl.pathname === '/signup')) {
+    return NextResponse.redirect(new URL('/dashboard', req.url));
   }
 
   // IMPORTANT: do NOT block /dashboard here, because middleware can’t see localStorage sessions

@@ -28,12 +28,12 @@ export const metadata: Metadata = {
 export default async function RootLayout({ children }: LayoutProps) {
   const supabase = createServerComponentClient({ cookies });
   const {
-    data: { session },
-  } = await supabase.auth.getSession();
+    data: { user },
+  } = await supabase.auth.getUser();
 
   let profile = null;
-  if (session) {
-    const { data } = await supabase.from('profiles').select('full_name').eq('id', session.user.id).single();
+  if (user) {
+    const { data } = await supabase.from('profiles').select('full_name').eq('id', user.id).single();
     profile = data;
   }
 
@@ -47,7 +47,7 @@ export default async function RootLayout({ children }: LayoutProps) {
         <LanguageProvider>
           <Providers>
             <Announcement />
-            <Header session={session} profile={profile} />
+            <Header user={user} profile={profile} />
             <main>{children}</main>
             <Footer2 />
           </Providers>

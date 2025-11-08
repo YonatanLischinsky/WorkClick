@@ -6,12 +6,12 @@ import { revalidatePath } from 'next/cache'
 export async function POST(req: NextRequest) {
   const supabase = createRouteHandlerClient({ cookies })
 
-  // Check if we have a session
+  // Check if we have a user
   const {
-    data: { session },
-  } = await supabase.auth.getSession()
+    data: { user },
+  } = await supabase.auth.getUser()
 
-  if (session) {
+  if (user) {
     await supabase.auth.signOut()
     revalidatePath('/', 'layout') // Revalidate all pages
   }
