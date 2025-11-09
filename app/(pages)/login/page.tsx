@@ -54,8 +54,13 @@ const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const [state, formAction] = useFormState(loginAction as any, { errorKey: '' });
+  const [state, formAction] = useFormState(loginAction, { errorKey: '' });
   const [submitted, setSubmitted] = useState(false);
+
+  const handleFormSubmit = async (formData: FormData) => {
+    setSubmitted(true);
+    await formAction(formData);
+  };
 
   const errorKey = state?.errorKey || (submitted && (!email || !password) ? 'login.errorAllFields' : '');
 
@@ -66,12 +71,7 @@ const LoginPage = () => {
           {getTranslation(language, 'login.title')}
         </h2>
 
-        <form
-          action={(formData) => {
-            setSubmitted(true);
-            formAction(formData);
-          }}
-        >
+        <form action={handleFormSubmit}>
           <div className="mb-4">
             <label
               htmlFor="email"
