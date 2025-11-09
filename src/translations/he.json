@@ -20,7 +20,7 @@
     "errorInvalidCredentials": "אימייל או סיסמה לא נכונים",
     "errorEmailNotConfirmed": "אנא אשר את כתובת האימייל שלך",
     "errorGeneral": "אירעה שגיאה בעת ההתחברות",
-    "signingIn": "...מתחבר"
+    "loggingIn": "...מתחבר"
   },
   "signup": {
     "title": "רישום",
@@ -74,7 +74,7 @@
     "memberSinceLabel": "חבר מאז",
     "signOutButton": "התנתק",
     "profileError": "לא ניתן לטעון את הפרופיל שלך.",
-    "loading": "...טוען"
+    "loading": "טוען נתונים..."
   },
   "hero": {
     "registerNow": "הירשם עכשיו"

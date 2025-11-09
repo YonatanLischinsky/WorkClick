@@ -20,7 +20,7 @@
     "errorInvalidCredentials": "Invalid email or password",
     "errorEmailNotConfirmed": "Please confirm your email address",
     "errorGeneral": "An error occurred while logging in",
-    "signingIn": "Signing in…"
+    "loggingIn": "Logging in..."
   },
   "signup": {
     "title": "Sign Up",
