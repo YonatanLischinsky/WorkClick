@@ -171,10 +171,6 @@ export const footerData: FooterProps = {
           href: '/',
         },
         {
-          label: 'Blog',
-          href: '/blog',
-        },
-        {
           label: 'Careers',
           href: '/',
         },
