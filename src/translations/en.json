@@ -139,10 +139,17 @@
     "postedOnLabel": "Posted on",
     "yearsLabel": "years",
     "loading": "Loading...",
-    "workersAvailable": "Workers Available",
-    "contractorsRequests": "Contractors Requests",
-    "apartments": "Apartments",
-    "postsAvailable": "posts available",
-    "resetFilters": "Reset"
+    "workersAvailable": "Search Workers",
+    "contractorsRequests": "Search Jobs",
+    "apartments": "Search Apartments",
+    "postsAvailable": "options available",
+    "resetFilters": "Reset",
+    "accommodationProvided": "Accommodation Provided",
+    "rent": "Rent",
+    "rooms": "Rooms",
+    "area_sqm": "Area (sqm)",
+    "sqm": "sqm",
+    "priceRange": "Price Range",
+    "numberOfRooms": "Number of Rooms"
   }
 }

@@ -139,10 +139,17 @@
     "postedOnLabel": "פורסם בתאריך",
     "yearsLabel": "שנים",
     "resetFilters": "איפוס",
-    "loading": "טוען נתונים",
-    "workersAvailable": "עובדים זמינים",
-    "contractorsRequests": "בקשות לעובדים",
-    "apartments": "דירות",
-    "postsAvailable": "משרות זמינות"
+    "loading": "טוען נתונים...",
+    "workersAvailable": "חיפוש עובדים",
+    "contractorsRequests": "חיפוש עבודות",
+    "apartments": "חיפוש דירות",
+    "postsAvailable": "אפשרויות זמינות",
+    "accommodationProvided": "מסופק מקום לינה",
+    "rent": "שכירות",
+    "rooms": "חדרים",
+    "area_sqm": "שטח (מ\"ר)",
+    "sqm": "מ\"ר",
+    "priceRange": "טווח מחירים",
+    "numberOfRooms": "מספר חדרים"
   }
 }
